@@ -1,0 +1,11 @@
+language: java
+
+# services:
+#    - docker
+   
+# before_install:
+#     - docker pull postgres:9.6
+#     - docker run -d -p 5432:5432 postgres
+   
+script: 
+    - mvn clean verify
