@@ -3,21 +3,17 @@ language: java
 services:
    - docker
    
-# before_install:
-#     - docker pull postgres:9.6
-#     - docker run -d -p 5432:5432 postgres
-   
 env:
     - DOCKER_COMPOSE_VERSION=1.4.2
-  
-  before_install:
-    - sudo rm /usr/local/bin/docker-compose
-    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-    - chmod +x docker-compose
-    - sudo mv docker-compose /usr/local/bin
 
 script: 
     - mvn clean verify
     - mvn package -DskipTests
-    - docker build -t /sample-application-db-changelog-job/db .
-    - docker build -t /sample-application-http-api-server/http .
+    #build
+    - docker build -t bilge98/sample-application-db-changelog-job sample-application-db-changelog-job/
+    - docker build -t bilge98/sample-application-http-api-server/http sample-application-http-api-server/
+    #connexion
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    #push
+    - docker push bilge98/sample-application-db-changelog-j
+    - docker push bilge98/ample-application-http-api-server
