@@ -13,7 +13,7 @@ script:
     - docker build -t bilge98/sample-application-db-changelog-job sample-application-db-changelog-job/
     - docker build -t bilge98/sample-application-http-api-server/http sample-application-http-api-server/
     #connexion
-    - echo "PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker login -u "$DOCKER_USERNAME" --password "$PASSWORD"
     #push
     - docker push bilge98/sample-application-db-changelog-job
-    - docker push bilge98/ample-application-http-api-server
+    - docker push bilge98/sample-application-http-api-server
