@@ -8,7 +8,7 @@ env:
 
 script: 
     - mvn clean verify
-    #- mvn package -DskipTests
+    - mvn package -DskipTests
     #build
     - docker build -t bilge98/sample-application-db-changelog-job sample-application-db-changelog-job/
     - docker build -t bilge98/sample-application-http-api-server/http sample-application-http-api-server/
