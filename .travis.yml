@@ -8,12 +8,12 @@ env:
 
 script: 
     - mvn clean verify
-    - mvn package -DskipTests
+    #- mvn package -DskipTests
     #build
     - docker build -t bilge98/sample-application-db-changelog-job sample-application-db-changelog-job/
     - docker build -t bilge98/sample-application-http-api-server/http sample-application-http-api-server/
     #connexion
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     #push
-    - docker push bilge98/sample-application-db-changelog-j
+    - docker push bilge98/sample-application-db-changelog-job
     - docker push bilge98/ample-application-http-api-server
